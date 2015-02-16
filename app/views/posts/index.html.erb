@@ -1,0 +1,12 @@
+#coding:utf-8
+
+<h1>listing posts</h1>
+
+<ul>
+  <% @posts.each do |post| %>
+  <li>
+  <%= link_to post.title, post_path(post) %>
+  </li>
+  <% end %>
+  </ul>
+  <%= link_to "Add post", new_post_path %>

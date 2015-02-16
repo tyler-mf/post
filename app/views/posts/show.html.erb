@@ -1,0 +1,30 @@
+<h1><%= @post.title %></h1>
+
+<p><%= @post.text %></p>
+
+
+<p>
+<tr>
+<td>"Created at "</td>
+<td><%= @post.created %></td>
+</tr>
+</p>
+<p>
+<tr>
+<td>Id   
+</td>
+<td><%= @post.id %></td>
+</tr>
+</p>
+<p>
+<tr>
+<td>Nickname</td>
+<td><big><%= @post.author %></big></td>
+</tr>
+</p>
+
+
+
+
+<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "ти впевнений?"} %>
+  <%= link_to "Edit", edit_post_path(@post) %>
