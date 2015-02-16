@@ -3,17 +3,17 @@ lock '3.3.5'
 
 set :application, 'testapp'
 set :repo_url, 'git@github.com:AndriykoSTU/post.git'
-set :user, 'andre'
+set :user, 'testuser'
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 set :tmp_dir, "/tmp"
 
 set :use_sudo,         false
 set :rvm_type,         :user
 set :rvm_ruby_version, '2.1.3'
-set :rvm_custom_path,  '/home/andre/.rvm'
+set :rvm_custom_path,  '/home/testuser/.rvm'
 set :stage,     :production
 set :branch,    'master'
-set :deploy_to, '/home/andre/testapp'
+set :deploy_to, '/home/testuser/testapp'
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
