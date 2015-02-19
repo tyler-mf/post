@@ -4,8 +4,10 @@ lock '3.3.5'
 set :application, 'testapp'
 set :repo_url, 'git@github.com:AndriykoSTU/post.git'
 set :user, 'testuser'
-set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 set :tmp_dir, "/tmp"
+set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
+
+set :keep_releases, 1
 
 set :use_sudo,         false
 set :rvm_type,         :user
@@ -14,6 +16,10 @@ set :rvm_custom_path,  '/home/testuser/.rvm'
 set :stage,     :production
 set :branch,    'master'
 set :deploy_to, '/home/testuser/testapp'
+
+
+
+
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
@@ -45,26 +51,26 @@ set :deploy_to, '/home/testuser/testapp'
 # set :keep_releases, 5
 
 namespace :deploy do
-
-
-  %w[start stop restart].each do |command|
-    desc 'Manage Unicorn'
-    task command do
-      on roles(:app), in: :sequence, wait: 1 do
-        execute "/etc/init.d/unicorn_#{fetch(:application)} #{command}"
-      end      
-    end
+  task :restart do
+    invoke 'unicorn:reload'
   end
+  Rake::Task['deploy:assets:precompile'].clear
+ 
 
-  after :publishing, :restart
-
-  after :restart, :clear_cache do
-    on roles(:web), in: :groups, limit: 3, wait: 10 do
-      # Here we can do anything such as:
-      # within release_path do
-      #   execute :rake, 'cache:clear'
-      # end
-    end
-  end
+namespace :assets do
+desc 'Precompile assets locally and then rsync to remote servers'
+task :precompile do
+local_manifest_path = %x{ls public/assets/manifest*}.strip
+ 
+%x{bundle exec rake assets:precompile assets:clean}
+ 
+on roles(fetch(:assets_roles)) do |server|
+%x{rsync -av ./public/assets/ #{server.user}@#{server.hostname}:#{release_path}/public/assets/}
+%x{rsync -av ./#{local_manifest_path} #{server.user}@#{server.hostname}:#{release_path}/assets_manifest#{File.extname(local_manifest_path)}}
+end
+ 
+%x{bundle exec rake assets:clobber}
+end
+end
 end
 
