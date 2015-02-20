@@ -4,21 +4,21 @@ lock '3.3.5'
 set :application, 'testapp'
 # set :repo_url, 'git@github.com:AndriykoSTU/post.git'
 set :repo_url, 'git@github.com:tyler-mf/post.git'
-set :branch,    'master'
+# set :branch,    'master'
 
 set :user, 'testuser'
-set :tmp_dir, "/tmp"
+set :tmp_dir, "/home/testuser/testapp/shared/tmp"
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}
 
-set :keep_releases, 1
+# set :keep_releases, 1
 
-set :use_sudo,         false
-set :rvm_type,         :user
-set :rvm_ruby_version, '2.1.3'
-set :rvm_custom_path,  '/home/testuser/.rvm'
-set :stage,     :production
-set :deploy_to, '/home/testuser/testapp'
-set :unicorn_config_path, "/home/testuser/testapp/config/unicorn.rb"
+# set :use_sudo,         false
+# set :rvm_type,         :user
+# set :rvm_ruby_version, '2.1.3'
+# set :rvm_custom_path,  '/home/testuser/.rvm'
+# set :stage,     :production
+# set :deploy_to, '/home/testuser/testapp'
+# set :unicorn_config_path, "/home/testuser/testapp/config/unicorn.rb"
 
 
 

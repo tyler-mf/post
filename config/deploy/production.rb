@@ -17,7 +17,15 @@ role :db,  %w{testuser@ec2-54-216-168-97.eu-west-1.compute.amazonaws.com}
 # used to set extended properties on the server.
 
 server 'ec2-54-216-168-97.eu-west-1.compute.amazonaws.com', user: 'testuser', roles: %w{web app}, my_property: :my_value
+set :branch,    'master'
+set :stage,     :production
+set :deploy_to, '/home/testuser/testapp'
+set :unicorn_config_path, "/home/testuser/testapp/config/unicorn.rb"
 
+set :use_sudo,         false
+set :rvm_type,         :user
+set :rvm_ruby_version, '2.1.3'
+set :rvm_custom_path,  '/home/testuser/.rvm'
 
 # Custom SSH Options
 # ==================
