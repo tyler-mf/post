@@ -4,7 +4,6 @@ working_directory root
 pid "#{shared}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
-unicorn_config_path "#{root}/config/unicorn.rb"
 
 listen "#{shared}/tmp/unicorn.testapp.sock"
 worker_processes 2
