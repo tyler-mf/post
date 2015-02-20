@@ -37,7 +37,7 @@ group :development do
   gem 'capistrano3-unicorn'
 end
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
