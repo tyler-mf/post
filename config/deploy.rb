@@ -2,7 +2,8 @@
 lock '3.3.5'
 
 set :application, 'testapp'
-set :repo_url, 'git@github.com:AndriykoSTU/post.git'
+# set :repo_url, 'git@github.com:AndriykoSTU/post.git'
+set :repo_url, 'git@github.com:tyler-mf/post.git'
 set :user, 'testuser'
 set :tmp_dir, "/tmp"
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets}

@@ -1,16 +1,17 @@
 root = "/home/testuser/testapp/current"
+shared = "/home/testuser/testapp/shared"
 working_directory root
-pid "#{root}/tmp/pids/unicorn.pid"
+pid "#{shared}/tmp/pids/unicorn.pid"
 stderr_path "#{root}/log/unicorn.log"
 stdout_path "#{root}/log/unicorn.log"
 
-listen "/tmp/unicorn.testapp.sock"
+listen "#{shared}/tmp/unicorn.testapp.sock"
 worker_processes 2
 timeout 30
 
 preload_app true
 
-listen '/tmp/unicorn.spui.sock', backlog: 64
+listen "#{shared}/tmp/unicorn.spui.sock", backlog: 64
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
